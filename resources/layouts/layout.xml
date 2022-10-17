@@ -1,0 +1,7 @@
+<layout id="MainLayout">
+    <bitmap id="id_battery" x="10" y="100" filename="../drawables/battery.png" />
+    <bitmap id="id_inverter" x="center" y="center" filename="../drawables/inverter.png" />
+    <bitmap id="id_grid" x="240" y="120" filename="../drawables/grid.png" />
+    <bitmap id="id_consumption" x="116" y="226" filename="../drawables/consumption.png" />
+    <bitmap id="id_pv" x="125" y="17" filename="../drawables/pv.png" />
+</layout>
