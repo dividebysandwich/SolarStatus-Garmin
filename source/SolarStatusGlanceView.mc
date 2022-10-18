@@ -6,11 +6,11 @@ import Toybox.Timer;
 class SolarStatusGlanceView extends WatchUi.GlanceView {
     var sd = null;
     var refreshTimer = null;
-    var mode = 5;
 
     function initialize() {
         GlanceView.initialize();
         sd = SolarData.getSolarData();
+        sd.setMode(5);
     }
 
     // Update the view
@@ -21,10 +21,12 @@ class SolarStatusGlanceView extends WatchUi.GlanceView {
             
             // If we don't have a cached buffer bitmap, redraw and cache it
             if (sd.getGlanceBitmap() == null) {
+                var mode = sd.getMode();
                 mode++;
                 if (mode > 5) {
                     mode = 1;
                 }
+                sd.setMode(mode);
 
                 // Create image buffer
                 var bitmapOpts = {

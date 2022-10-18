@@ -10,13 +10,24 @@ class SolarData {
     var lastUpdateTime;
     var view;
     var glanceBitmap = null;
+    var forceRefreshOnReload = false;
+    var mode = 5;
 
     function initialize() {
         // Get last data snapshot from application storage so we have something to show immediately on startup.
         // It will be updated once the HTTP request finishes.
         lastData = Storage.getValue("lastSolarData");
         lastUpdateTime = Storage.getValue("lastSolarDataTime");
+        forceRefreshOnReload = true; // Make the widget redraw immediately when the first data fetch succeeds.
         makeRequest();
+    }
+
+    function setMode(m) {
+        mode = m;
+    }
+
+    function getMode() {
+        return mode;
     }
 
     // set up the response callback function
@@ -29,6 +40,11 @@ class SolarData {
                 // Store data in application storage
                 Storage.setValue("lastSolarData", lastData);
                 Storage.setValue("lastSolarDataTime", lastUpdateTime);
+                if (forceRefreshOnReload == true) {
+                    mode = 5; //Make it start at the PV mode on first data load
+                    forceRefreshOnReload = false;
+                    WatchUi.requestUpdate();
+                }
             }
         } else {
             System.println("Response: " + responseCode);            // print response code
