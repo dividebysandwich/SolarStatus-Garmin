@@ -12,6 +12,8 @@ class SolarData {
     var glanceBitmap = null;
 
     function initialize() {
+        // Get last data snapshot from application storage so we have something to show immediately on startup.
+        // It will be updated once the HTTP request finishes.
         lastData = Storage.getValue("lastSolarData");
         lastUpdateTime = Storage.getValue("lastSolarDataTime");
         makeRequest();
@@ -24,6 +26,7 @@ class SolarData {
             if (!data.isEmpty()) { 
                 lastUpdateTime = Time.now().value();
                 lastData = data;
+                // Store data in application storage
                 Storage.setValue("lastSolarData", lastData);
                 Storage.setValue("lastSolarDataTime", lastUpdateTime);
             }

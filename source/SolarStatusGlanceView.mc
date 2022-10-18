@@ -72,7 +72,10 @@ class SolarStatusGlanceView extends WatchUi.GlanceView {
                     if (maxValue < 1000) {
                         maxValue = 1000;
                     }
-                    drawEnergyBackflow = true;
+                    //Only show the negative axis of the graph if there was energy flowing back to the grid
+                    if (minValue > 500) {
+                        drawEnergyBackflow = true;
+                    }
                 } else if (mode == 4) {
                     histogram = sd.getBatteryuseHistogram();
                     linecolor = Graphics.COLOR_BLUE;
@@ -83,7 +86,10 @@ class SolarStatusGlanceView extends WatchUi.GlanceView {
                     if (maxValue < minValue) {
                         maxValue = minValue;
                     }
-                    drawEnergyBackflow = true;
+                    //Only show the negative axis of the graph if there was energy being drained from the battery
+                    if (minValue > 500) {
+                        drawEnergyBackflow = true;
+                    }
                 } else if (mode == 5) {
                     histogram = sd.getSOCHistogram();
                     linecolor = Graphics.COLOR_PURPLE;
