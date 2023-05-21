@@ -82,7 +82,7 @@ class SolarStatusView extends WatchUi.View {
 
     }
 
-    function timerCallback() {
+    function timerCallback() as Void{
         sd.requestUpdate();
     }
 

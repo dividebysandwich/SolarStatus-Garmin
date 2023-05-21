@@ -31,7 +31,7 @@ class SolarData {
     }
 
     // set up the response callback function
-    function onReceive(responseCode as Number, data as Dictionary?) as Void {
+    function onReceive(responseCode as Number, data as Dictionary or String or Null) as Void {
         if (responseCode == 200) {
             System.println("Request Successful");                   // print success
             if (!data.isEmpty()) { 
@@ -73,8 +73,6 @@ class SolarData {
             :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON
         };
 
-        var responseCallback = method(:onReceive);                  // set responseCallback to
-        // onReceive() method
         // Make the Communications.makeWebRequest() call
         Communications.makeWebRequest(url, params, options, method(:onReceive));
     }
@@ -114,11 +112,11 @@ class SolarData {
     }
 
 
-    public function getGlanceBitmap() as BufferedBitmap? {
+    public function getGlanceBitmap() as Toybox.Graphics.BufferedBitmap? {
         return glanceBitmap;
     }
 
-    public function setGlanceBitmap(bitmap as BufferedBitmap?) {
+    public function setGlanceBitmap(bitmap as Toybox.Graphics.BufferedBitmap?) {
         glanceBitmap = bitmap;
     }
 

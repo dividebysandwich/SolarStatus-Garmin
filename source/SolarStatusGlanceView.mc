@@ -223,7 +223,7 @@ class SolarStatusGlanceView extends WatchUi.GlanceView {
 
     }
 
-    function timerCallback() {
+    function timerCallback() as Void {
         sd.requestUpdate();
     }
 
