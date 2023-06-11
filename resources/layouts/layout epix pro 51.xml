@@ -1,0 +1,7 @@
+<layout id="MainLayout_EpixPro51">
+    <bitmap id="id_battery_big"     x="10" y="176" filename="../drawables/battery_big.png" />
+    <bitmap id="id_grid_big2"        x="385" y="195" filename="../drawables/grid_big2.png" />
+    <bitmap id="id_pv_big2"          x="195" y="3" filename="../drawables/pv_big2.png" />
+    <bitmap id="id_inverter_big"    x="204" y="center" filename="../drawables/inverter_big.png" />
+    <bitmap id="id_consumption_big" x="193" y="400" filename="../drawables/consumption_big.png" />
+</layout>

@@ -132,8 +132,12 @@ class SolarStatusGlanceView extends WatchUi.GlanceView {
                     bitmapDc.drawLine(x, 0, x, dc.getHeight());
                 }
 
+                var zoomFactor = 2.0;
+                if (System.getDeviceSettings().screenHeight > 416) {
+                    zoomFactor = 2.27;
+                }
                 // Fill shaded area under the curve
-                for (var x = 0; x < histogram.size()*2; x++) {
+                for (var x = 0; x < histogram.size()*zoomFactor; x++) {
                     var alpha = 30 + (x/2);
                     if (mode == 1) {
                	        bitmapDc.setFill(Graphics.createColor(alpha, 255, 255, 0));
@@ -152,14 +156,14 @@ class SolarStatusGlanceView extends WatchUi.GlanceView {
       	                bitmapDc.setStroke(Graphics.createColor(alpha, 255, 0, 255));
                     }
                     if (drawEnergyBackflow == false) {
-                        var height = histogram[x/2].toFloat() / maxValue.toFloat() * (dc.getHeight().toFloat() - 2.0f);
+                        var height = histogram[(x/zoomFactor).toNumber()].toFloat() / maxValue.toFloat() * (dc.getHeight().toFloat() - 2.0f);
                         if (height < 0) {
                             height = 0;
                         }
                         bitmapDc.drawLine(x+1+offset, dc.getHeight()-1-height.toNumber(), x+1+offset, dc.getHeight()-1);
                     } else {
                         var halfHeight = dc.getHeight()/2;
-                        var height = histogram[x/2].toFloat() / maxValue.toFloat() * (halfHeight - 2.0f);
+                        var height = histogram[(x/zoomFactor).toNumber()].toFloat() / maxValue.toFloat() * (halfHeight - 2.0f);
                         bitmapDc.drawLine(x+1+offset, halfHeight-1-height.toNumber(), x+1+offset, halfHeight-1);
                     }
                 }
@@ -167,10 +171,10 @@ class SolarStatusGlanceView extends WatchUi.GlanceView {
                 // Draw the curve itself
                 bitmapDc.setPenWidth(2);
         	    bitmapDc.setColor(linecolor, Graphics.COLOR_BLACK);
-                for (var x = 1; x < histogram.size()*2; x+=2) {
+                for (var x = 1; x < histogram.size()*zoomFactor; x+=2) {
                     if (drawEnergyBackflow == false) {
-                        var heightprev = histogram[(x-2)/2].toFloat() / maxValue.toFloat() * (dc.getHeight().toFloat() - 2.0f);
-                        var height = histogram[x/2].toFloat() / maxValue.toFloat() * dc.getHeight().toFloat() - 2.0f;
+                        var heightprev = histogram[((x-2)/zoomFactor).toNumber()].toFloat() / maxValue.toFloat() * (dc.getHeight().toFloat() - 2.0f);
+                        var height = histogram[(x/zoomFactor).toNumber()].toFloat() / maxValue.toFloat() * dc.getHeight().toFloat() - 2.0f;
                         if (heightprev < 0) {
                             heightprev = 0;
                         }
@@ -179,8 +183,8 @@ class SolarStatusGlanceView extends WatchUi.GlanceView {
                         }
                         bitmapDc.drawLine(x+offset, dc.getHeight()-1-heightprev.toNumber(), x+1+offset, dc.getHeight()-1-height.toNumber());
                     } else {
-                        var heightprev = histogram[(x-2)/2].toFloat() / maxValue.toFloat() * (dc.getHeight().toFloat()/2.0f - 2.0f);
-                        var height = histogram[x/2].toFloat() / maxValue.toFloat() * dc.getHeight().toFloat()/2.0f - 2.0f;
+                        var heightprev = histogram[((x-2)/zoomFactor).toNumber()].toFloat() / maxValue.toFloat() * (dc.getHeight().toFloat()/2.0f - 2.0f);
+                        var height = histogram[(x/zoomFactor).toNumber()].toFloat() / maxValue.toFloat() * dc.getHeight().toFloat()/2.0f - 2.0f;
                         bitmapDc.drawLine(x+offset, dc.getHeight()/2-1-heightprev.toNumber(), x+1+offset, dc.getHeight()/2-1-height.toNumber());
                     }
 

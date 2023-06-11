@@ -16,6 +16,8 @@ class SolarStatusView extends WatchUi.View {
             setLayout(Rez.Layouts.MainLayout(dc));
         } else if (System.getDeviceSettings().screenHeight == 416) {
             setLayout(Rez.Layouts.MainLayout_Epix(dc));
+        } else if (System.getDeviceSettings().screenHeight == 454) {
+            setLayout(Rez.Layouts.MainLayout_EpixPro51(dc));
         }
     }
 
@@ -67,6 +69,25 @@ class SolarStatusView extends WatchUi.View {
                 dc.drawText(128, 165, Graphics.FONT_SYSTEM_TINY, batteryuse+"kW", Graphics.TEXT_JUSTIFY_CENTER);
                 dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
                 dc.drawText(250, 335, Graphics.FONT_SYSTEM_TINY, consumption+"kW", Graphics.TEXT_JUSTIFY_LEFT);
+            } else if (System.getDeviceSettings().screenHeight == 454) {
+                dc.setColor(Graphics.COLOR_DK_BLUE, Graphics.COLOR_TRANSPARENT);
+                var barheight = (soc.toFloat() / 100.0 * (252 - 173)).toNumber();
+                dc.fillRectangle(17, 190+((252-173)-barheight), 48, barheight);
+                dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+                dc.drawLine(75, System.getDeviceSettings().screenHeight/2, 200, System.getDeviceSettings().screenHeight/2);
+                dc.drawLine(254, System.getDeviceSettings().screenHeight/2, 380, System.getDeviceSettings().screenHeight/2);
+                dc.drawLine(System.getDeviceSettings().screenWidth/2, 63, System.getDeviceSettings().screenWidth/2, 200);
+                dc.drawLine(System.getDeviceSettings().screenWidth/2, 252, System.getDeviceSettings().screenWidth/2, 395);
+                dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+                dc.drawText(42, 206, Graphics.FONT_SYSTEM_XTINY, soc+"%", Graphics.TEXT_JUSTIFY_CENTER);
+                dc.setColor(Graphics.COLOR_YELLOW, Graphics.COLOR_TRANSPARENT);
+                dc.drawText(255, 45, Graphics.FONT_SYSTEM_TINY, pv+"kW", Graphics.TEXT_JUSTIFY_LEFT);
+                dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
+                dc.drawText(320, 175, Graphics.FONT_SYSTEM_TINY, grid+"kW", Graphics.TEXT_JUSTIFY_CENTER);
+                dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
+                dc.drawText(140, 175, Graphics.FONT_SYSTEM_TINY, batteryuse+"kW", Graphics.TEXT_JUSTIFY_CENTER);
+                dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
+                dc.drawText(255, 360, Graphics.FONT_SYSTEM_TINY, consumption+"kW", Graphics.TEXT_JUSTIFY_LEFT);
             }
         }
     }
