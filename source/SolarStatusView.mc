@@ -56,15 +56,15 @@ class SolarStatusView extends WatchUi.View {
                 dc.fillRectangle(17, 174+((252-173)-barheight), 48, barheight);
                 dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
                 dc.drawLine(75, 210, 184, 210);
-                dc.drawLine(240, 210, 366, 210);
-                dc.drawLine(210, 63, 210, 180);
+                dc.drawLine(240, 210, 345, 210);
+                dc.drawLine(210, 70, 210, 180);
                 dc.drawLine(210, 236, 210, 348);
                 dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
                 dc.drawText(42, 195, Graphics.FONT_SYSTEM_XTINY, soc+"%", Graphics.TEXT_JUSTIFY_CENTER);
                 dc.setColor(Graphics.COLOR_YELLOW, Graphics.COLOR_TRANSPARENT);
                 dc.drawText(250, 45, Graphics.FONT_SYSTEM_TINY, pv+"kW", Graphics.TEXT_JUSTIFY_LEFT);
                 dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
-                dc.drawText(310, 165, Graphics.FONT_SYSTEM_TINY, grid+"kW", Graphics.TEXT_JUSTIFY_CENTER);
+                dc.drawText(295, 165, Graphics.FONT_SYSTEM_TINY, grid+"kW", Graphics.TEXT_JUSTIFY_CENTER);
                 dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
                 dc.drawText(128, 165, Graphics.FONT_SYSTEM_TINY, batteryuse+"kW", Graphics.TEXT_JUSTIFY_CENTER);
                 dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
