@@ -17,8 +17,8 @@ class SolarStatusApp extends Application.AppBase {
     }
 
     // Return the initial view of the application here
-    function getInitialView() as Array<Views or InputDelegates>? {
-        return [ new SolarStatusView() ] as Array<Views or InputDelegates>;
+    function getInitialView() as [Views] or [Views, InputDelegates] {
+        return [ new SolarStatusView() ];
     }
 
     (:glance)
