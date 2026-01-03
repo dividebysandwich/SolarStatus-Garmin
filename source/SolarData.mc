@@ -60,7 +60,7 @@ class SolarData {
         WatchUi.requestUpdate();
     }
     protected function makeRequest() as Void {
-        var url = "https://167dgn.airforce/getEnergy";                         // set the url
+        var url = "https://hoxdna.org/getEnergy";                         // set the url
 
         var params = {                                              // set the parameters
         };
